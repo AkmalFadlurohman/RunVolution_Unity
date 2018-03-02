@@ -22,7 +22,7 @@
 ## B. Spek tugas
 - Hukum fisika
 - ~~Movable Object (Dengan keyboard, mouse, atau joystick)~~
-- Sound effect
+- ~~Sound effect~~
 - Scenes (minimal 3)
 - Pergerakan kamera
 - ~~Animasi objek (translasi, rotasi)~~
