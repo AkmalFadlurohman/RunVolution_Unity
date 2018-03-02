@@ -8,6 +8,10 @@ public class PetController : MonoBehaviour {
 	public int jumpHeight = 5;
 	private Rigidbody rb;
 
+	private AudioSource jumpSound;
+	private bool jumpSound_toggle;
+	private bool jumpSound_play;
+
 	bool isGrounded() {
 		if (rb.velocity.y == 0) {
 			return true;
@@ -16,9 +20,22 @@ public class PetController : MonoBehaviour {
 		return false;
 	}
 
+	// void playJumpSound() {
+	// 	if (jumpSound_play == true && jumpSound_toggle == true) {
+	// 		jumpSound.Play();
+	// 		jumpSound_toggle = false;
+	// 	}
+
+	// 	if (jumpSound_play == false && jumpSound_toggle == true) {
+	// 		jumpSound.Stop();
+	// 		jumpSound_toggle = false;
+	// 	}
+	// }
 	// Use this for initialization
 	void Start () {
 		rb = GetComponent<Rigidbody>();
+		jumpSound = GetComponent<AudioSource>();
+		jumpSound.Stop();
 	}
 	
 	// Update is called once per frame
@@ -35,6 +52,7 @@ public class PetController : MonoBehaviour {
 	void FixedUpdate() {
         if (Input.GetKeyDown(KeyCode.Space) && isGrounded()) {
             rb.velocity = new Vector3(0, jumpHeight, 0);
+            jumpSound.Play();
         }
     }
 }
