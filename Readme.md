@@ -21,12 +21,12 @@
 
 ## B. Spek tugas
 - Hukum fisika
-- Movable Object (Dengan keyboard, mouse, atau joystick)
+- ~~Movable Object (Dengan keyboard, mouse, atau joystick)~~
 - Sound effect
 - Scenes (minimal 3)
 - Pergerakan kamera
-- Animasi objek (translasi, rotasi)
-- Sumber cahaya (minimal 2, memiliki animasi)
+- ~~Animasi objek (translasi, rotasi)~~
+- ~~Sumber cahaya (minimal 2, memiliki animasi)~~
 - Canvas dan panel (untuk menu)
 - PlayerPrefs
 - Basis Data (misal SQLite)
