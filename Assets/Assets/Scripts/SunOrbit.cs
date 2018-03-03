@@ -9,7 +9,7 @@ public class SunOrbit : MonoBehaviour {
 	private float sunIntensity;
 
 	public float minDimDeg = 160.0f;
-	public float maxDimDeg = 180.0f;
+	public float maxDimDeg = 220.0f;
 
 	public float minIncDeg = 320.0f;
 	public float maxIncDeg = 359.9f;
