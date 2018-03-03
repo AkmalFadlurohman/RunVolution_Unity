@@ -6,10 +6,11 @@
 - Home Screen
 - Wardrobe Screen
 - Evolution Screen
+- ~~Menu Screen (Login)~~
 
 ### Fungsi Unity
 - Pet Apperance Modification => Ubah tekstur / material objek pet
-- User menu => pilihan menu (login, settings, exit, dll)
+- ~~User menu => pilihan menu (login, settings, exit, dll)~~
 - Pet motion => gerakin objek pet (target gerak pake keyboard. kalo sempet bikin bisa gerak2 sendiri juga)
 - Pet Feeding => Bisa drag objek makanan ke screen
 - Player preferences => Konfigurasi pengguna (jenis pet, mute sound, background, dsc)
@@ -27,7 +28,7 @@
 - Pergerakan kamera
 - ~~Animasi objek (translasi, rotasi)~~
 - ~~Sumber cahaya (minimal 2, memiliki animasi)~~
-- Canvas dan panel (untuk menu)
+- ~~Canvas dan panel (untuk menu)~~
 - PlayerPrefs
 - Basis Data (misal SQLite)
 - Networking
