@@ -9,6 +9,10 @@ public class RVSceneManager : MonoBehaviour {
 		SceneManager.LoadScene("_Scenes/Home");
 	}
 
+	public void ReturnToMenu() {
+		SceneManager.LoadScene("_Scenes/MainMenu");
+	}
+
 	public void QuitGame() {
 		Application.Quit();
 	}
