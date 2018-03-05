@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SlimeAnimatorScript : MonoBehaviour {
+public class PetAnimatorScript : MonoBehaviour {
 
 	private Animator anim;
 
