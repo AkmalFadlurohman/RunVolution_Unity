@@ -9,6 +9,10 @@ public class RVSceneManager : MonoBehaviour {
 		SceneManager.LoadScene("_Scenes/Home");
 	}
 
+	public void OpenWardrobe() {
+		SceneManager.LoadScene("_Scenes/Wardrobe");
+	}
+
 	public void ReturnToMenu() {
 		SceneManager.LoadScene("_Scenes/MainMenu");
 	}
