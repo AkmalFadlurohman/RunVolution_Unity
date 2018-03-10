@@ -6,6 +6,7 @@ using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using UnityEngine.Networking;
 using System.Text.RegularExpressions;
+using SimpleJSON;
 
 public class Login : MonoBehaviour {
 
@@ -65,9 +66,18 @@ public class Login : MonoBehaviour {
 		}
 		else {
 			string msg = www.downloadHandler.text;
-			Debug.Log(msg);
-			gameObject.SetActive (false);
-			targetObject.SetActive (true);
+			if (msg != null) {
+				Debug.Log (msg);
+				var data = JSON.Parse (msg);
+				int petId = data ["pet_id"].AsInt;
+				PlayerPrefs.SetString ("name", data ["name"].Value);
+				PlayerPrefs.SetString ("email", data ["email"].Value);
+				Debug.Log (petId);
+				StartCoroutine (getPetData (petId));
+			} else {
+				Debug.Log ("Data not found");
+			}
+			
 		}
 	}
 
@@ -81,9 +91,18 @@ public class Login : MonoBehaviour {
 		}
 		else {
 			string msg = www.downloadHandler.text;
-			Debug.Log(msg);
-			gameObject.SetActive (false);
-			targetObject.SetActive (true);
+			if (msg != null) {
+				Debug.Log (msg);
+				var data = JSON.Parse (msg);
+				PlayerPrefs.SetInt ("petId", data ["id"].AsInt);
+				PlayerPrefs.SetString ("petName", data ["name"].Value);
+				PlayerPrefs.SetInt ("petLevel", data ["level"].AsInt);
+				PlayerPrefs.SetInt ("petXP", data ["name"].AsInt);
+				gameObject.SetActive (false);
+				targetObject.SetActive (true);
+			} else {
+				Debug.Log ("Data not found");
+			}
 		}
 	}
 }
