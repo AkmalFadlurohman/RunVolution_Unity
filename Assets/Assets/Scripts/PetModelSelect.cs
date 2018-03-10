@@ -2,56 +2,109 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[System.Serializable]
+public class petModel : System.Object
+{
+    public GameObject[] skins;
+
+    public int getSkinCount() {
+    	return skins.Length;
+    }
+}
+
 public class PetModelSelect : MonoBehaviour {
 
-	public GameObject [] slimesPrefab;
-	public int currentIndex;
+	public petModel[] petPrefabs;
+	public int currentType;	
+	public int currentSkin;
 	private Transform self;
 	public GameObject modelObject;
+	public bool debug;
 
 	// Use this for initialization
 	void Start () {
 		self = GetComponent<Transform>();
-		modelObject = Instantiate(slimesPrefab[currentIndex], self.position, self.rotation);
+		modelObject = Instantiate(petPrefabs[currentType].skins[currentSkin], self.position, self.rotation);
 		modelObject.transform.parent = self;
 	}
 	
 	// Update is called once per frame
 	void Update () {
-		if (Input.GetKeyDown(KeyCode.F2)) {
-			changeNextModel();
-		} else if (Input.GetKeyDown(KeyCode.F1)) {
-			changePrevModel();
+		if (debug) {
+			if (Input.GetKeyDown(KeyCode.F2)) {
+				changeNextModel();
+			} else if (Input.GetKeyDown(KeyCode.F1)) {
+				changePrevModel();
+			}
+
+			if (Input.GetKeyDown(KeyCode.F4)) {
+				changeNextSkin();
+			} else if (Input.GetKeyDown(KeyCode.F3)) {
+				changePrevSkin();
+			}
 		}
 	}
 
-	void changeModel(int index) {
-		if (index >= 0 && index < slimesPrefab.Length) {
-			currentIndex = index;
+	public void changeModel(int index) {
+		if (index >= 0 && index < petPrefabs.Length) {
+			currentType = index;
 			Destroy(modelObject);
-			modelObject = Instantiate(slimesPrefab[currentIndex], self.position, self.rotation);
+			currentSkin = 0;
+			modelObject = Instantiate(petPrefabs[currentType].skins[currentSkin], self.position, self.rotation);
 			modelObject.transform.parent = self;
 		}
 	}
 	
-	void changeNextModel() {
-		currentIndex++;
-		if (currentIndex >= slimesPrefab.Length) {
-			currentIndex = 0;
+	public void changeNextModel() {
+		currentType++;
+		if (currentType >= petPrefabs.Length) {
+			currentType = 0;
 		}
 		Destroy(modelObject);
-		modelObject = Instantiate(slimesPrefab[currentIndex], self.position, self.rotation);
+		currentSkin = 0;
+		modelObject = Instantiate(petPrefabs[currentType].skins[currentSkin], self.position, self.rotation);
 		modelObject.transform.parent = self;
 	}
 
-	void changePrevModel() {
-		currentIndex--;
-		if (currentIndex < 0) {
-			currentIndex = slimesPrefab.Length - 1;
+	public void changePrevModel() {
+		currentType--;
+		if (currentType < 0) {
+			currentType = petPrefabs.Length - 1;
 		}
 
 		Destroy(modelObject);
-		modelObject = Instantiate(slimesPrefab[currentIndex], self.position, self.rotation);
+		currentSkin = 0;
+		modelObject = Instantiate(petPrefabs[currentType].skins[currentSkin], self.position, self.rotation);
+		modelObject.transform.parent = self;
+	}
+
+	public void changeSkin(int index) {
+		if (index >= 0 && index < petPrefabs[currentType].getSkinCount()) {
+			currentSkin = index;
+			Destroy(modelObject);
+			modelObject = Instantiate(petPrefabs[currentType].skins[currentSkin], self.position, self.rotation);
+			modelObject.transform.parent = self;
+		}
+	}
+	
+	public void changeNextSkin () {
+		currentSkin++;
+		if (currentSkin >= petPrefabs[currentType].getSkinCount()) {
+			currentSkin = 0;
+		}
+		Destroy(modelObject);
+		modelObject = Instantiate(petPrefabs[currentType].skins[currentSkin], self.position, self.rotation);
+		modelObject.transform.parent = self;
+	}
+
+	public void changePrevSkin() {
+		currentSkin--;
+		if (currentSkin < 0) {
+			currentSkin = petPrefabs[currentType].getSkinCount() - 1;
+		}
+
+		Destroy(modelObject);
+		modelObject = Instantiate(petPrefabs[currentType].skins[currentSkin], self.position, self.rotation);
 		modelObject.transform.parent = self;
 	}
 }
