@@ -4584,7 +4584,6 @@ Prefab:
 Transform:
   m_PrefabParentObject: {fileID: 480482, guid: b98e65c39d212014681ba7b234ebe827, type: 2}
   m_PrefabInternal: {fileID: 961444127}
-<<<<<<< HEAD
 --- !u!1001 &997113699
 Prefab:
   m_ObjectHideFlags: 0
@@ -4627,8 +4626,6 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 95eb20da7ee93c04b965e0c2e7120b19, type: 2}
   m_IsPrefabParent: 0
-=======
->>>>>>> f99515b176925671d4a9510cff407d3c2c1ac355
 --- !u!1001 &1011248524
 Prefab:
   m_ObjectHideFlags: 0
