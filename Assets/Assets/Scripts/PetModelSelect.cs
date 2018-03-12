@@ -23,6 +23,10 @@ public class PetModelSelect : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
+		if (PlayerPrefs.GetInt ("petType") != null && PlayerPrefs.GetInt ("petSkin") != null) {
+			currentType = PlayerPrefs.GetInt ("petType");
+			currentSkin = PlayerPrefs.GetInt ("petSkin");
+		}
 		self = GetComponent<Transform>();
 		modelObject = Instantiate(petPrefabs[currentType].skins[currentSkin], self.position, self.rotation);
 		modelObject.transform.parent = self;
@@ -106,5 +110,11 @@ public class PetModelSelect : MonoBehaviour {
 		Destroy(modelObject);
 		modelObject = Instantiate(petPrefabs[currentType].skins[currentSkin], self.position, self.rotation);
 		modelObject.transform.parent = self;
+	}
+
+	public void saveAppearances() {
+		PlayerPrefs.SetInt ("petType", currentType);
+		PlayerPrefs.SetInt ("petSkin", currentSkin);
+		Debug.Log ("Saved pet settings with type : " + currentType + " & skin : " + currentSkin);
 	}
 }

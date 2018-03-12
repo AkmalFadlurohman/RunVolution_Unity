@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657844, g: 0.49641222, b: 0.57481694, a: 1}
+  m_IndirectSpecularColor: {r: 0.44659364, g: 0.4964301, b: 0.5748256, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -2424,8 +2424,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   emailField: {fileID: 323434740}
   passwordField: {fileID: 695179075}
-  gameObject: {fileID: 82960982}
-  targetObject: {fileID: 1336420978}
+  menuObject: {fileID: 0}
 --- !u!1 &1497289685
 GameObject:
   m_ObjectHideFlags: 0

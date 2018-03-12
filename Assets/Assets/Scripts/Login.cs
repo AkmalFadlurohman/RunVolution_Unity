@@ -12,8 +12,8 @@ public class Login : MonoBehaviour {
 
 	public InputField emailField;
 	public InputField passwordField;
-	public GameObject gameObject;
-	public GameObject targetObject;
+	public GameObject menuObject;
+
 
 	public void login() {
 		Debug.Log ("Clicked login");
@@ -98,8 +98,14 @@ public class Login : MonoBehaviour {
 				PlayerPrefs.SetString ("petName", data ["name"].Value);
 				PlayerPrefs.SetInt ("petLevel", data ["level"].AsInt);
 				PlayerPrefs.SetInt ("petXP", data ["name"].AsInt);
-				gameObject.SetActive (false);
-				targetObject.SetActive (true);
+				int petType = data ["type"].AsInt;
+				int petSkin = data ["skin"].AsInt;
+				menuObject.SetActive (false);
+				if (petType == -1 && petSkin == -1) {
+					SceneManager.LoadScene ("_Scenes/Wardrobe");
+				} else {
+					SceneManager.LoadScene ("_Scenes/Home");
+				}
 			} else {
 				Debug.Log ("Data not found");
 			}
