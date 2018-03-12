@@ -104,6 +104,8 @@ public class Login : MonoBehaviour {
 				if (petType == -1 && petSkin == -1) {
 					SceneManager.LoadScene ("_Scenes/Wardrobe");
 				} else {
+					PlayerPrefs.SetInt ("petType", petType);
+					PlayerPrefs.SetInt ("petSkin", petSkin);
 					SceneManager.LoadScene ("_Scenes/Home");
 				}
 			} else {

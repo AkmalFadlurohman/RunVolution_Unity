@@ -118,6 +118,33 @@ public class PetModelSelect : MonoBehaviour {
 		PlayerPrefs.SetInt ("petType", currentType);
 		PlayerPrefs.SetInt ("petSkin", currentSkin);
 		Debug.Log ("Saved pet settings with type : " + currentType + " & skin : " + currentSkin);
+		int petID = PlayerPrefs.GetInt ("petId");
+		StartCoroutine (updatePetAppearance(petID,currentType,currentSkin));
 		SceneManager.LoadScene ("_Scenes/Home");
+	}
+
+	public  IEnumerator updatePetAppearance(int petID,int type,int skin) {
+		string param = "?petid=" + petID + "&type="+type+"&skin="+skin;
+		WWWForm data = new WWWForm();
+		data.AddField("petid", petID);
+		data.AddField ("type", type);
+		data.AddField ("skin", skin);
+		UnityWebRequest www = UnityWebRequest.Post("https://runvolution.herokuapp.com/updatepetappearance",data);
+		yield return www.SendWebRequest();
+
+		if (www.isNetworkError || www.isHttpError) {
+			Debug.Log (www.error);
+		}
+		else {
+			string msg = www.downloadHandler.text;
+			if (msg != null) {
+				Debug.Log (msg);
+				if (msg.Equals ("OK")) {
+					Debug.Log ("Updated pet appearance setting on server");
+				}
+			} else {
+				Debug.Log ("Data not found");
+			}
+		}
 	}
 }
