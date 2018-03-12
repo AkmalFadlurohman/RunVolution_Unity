@@ -16,8 +16,4 @@ public class RVSceneManager : MonoBehaviour {
 	public void ReturnToMenu() {
 		SceneManager.LoadScene("_Scenes/MainMenu");
 	}
-
-	public void QuitGame() {
-		Application.Quit();
-	}
 }
