@@ -1,6 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Networking;
+using UnityEngine.SceneManagement;
 
 [System.Serializable]
 public class petModel : System.Object
@@ -23,7 +25,7 @@ public class PetModelSelect : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		if (PlayerPrefs.GetInt ("petType") != null && PlayerPrefs.GetInt ("petSkin") != null) {
+		if (PlayerPrefs.GetInt ("petType") != -1 && PlayerPrefs.GetInt ("petSkin") != -1) {
 			currentType = PlayerPrefs.GetInt ("petType");
 			currentSkin = PlayerPrefs.GetInt ("petSkin");
 		}
@@ -116,5 +118,6 @@ public class PetModelSelect : MonoBehaviour {
 		PlayerPrefs.SetInt ("petType", currentType);
 		PlayerPrefs.SetInt ("petSkin", currentSkin);
 		Debug.Log ("Saved pet settings with type : " + currentType + " & skin : " + currentSkin);
+		SceneManager.LoadScene ("_Scenes/Home");
 	}
 }

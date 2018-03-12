@@ -55,4 +55,10 @@ public class PetController : MonoBehaviour {
             jumpSound.Play();
         }
     }
+
+	void OnApplicationQuit()
+	{
+		Debug.Log ("Game has quit");
+		PlayerPrefs.DeleteAll ();
+	}
 }
