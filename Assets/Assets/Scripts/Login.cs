@@ -72,7 +72,17 @@ public class Login : MonoBehaviour {
 				int petId = data ["pet_id"].AsInt;
 				PlayerPrefs.SetString ("name", data ["name"].Value);
 				PlayerPrefs.SetString ("email", data ["email"].Value);
-				Debug.Log (petId);
+				float savedPreviousRecord = PlayerPrefs.GetFloat ("previousRecord");
+				float savedCurrentRecord = PlayerPrefs.GetFloat ("currentRecord");
+				float previousRecord = data ["previous_record"].AsFloat;
+				float currentRecord = data ["current_record"].AsFloat;
+				if ((savedPreviousRecord != previousRecord) && (savedCurrentRecord != currentRecord)) {
+					PlayerPrefs.SetFloat ("previousRecord", data ["previous_record"].AsFloat);
+					PlayerPrefs.SetFloat ("currentRecord", data ["current_record"].AsFloat);
+				} else {
+					PlayerPrefs.SetFloat ("previousRecord", 0);
+					PlayerPrefs.SetFloat ("currentRecord", 0);
+				}
 				StartCoroutine (getPetData (petId));
 			} else {
 				Debug.Log ("Data not found");
