@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class PetController : MonoBehaviour {
+	public GameObject itemContainer;
 	public float rotateSpeed = 150.0f;
 	public float verticalSpeed = 3.0f;
 	public int jumpHeight = 5;
@@ -55,6 +56,23 @@ public class PetController : MonoBehaviour {
             jumpSound.Play();
         }
     }
+	/*void OnCollisionEnter(Collision col) {
+		Debug.Log (col.gameObject.name);
+		if (gameObject.name == "Food") {
+			Debug.Log ("Found foods");
+			Destroy (col.rigidbody);
+			Destroy (col.gameObject);
+		}
+	}*/
+	/*void OnTriggerEnter(Collider col) {
+		Debug.Log (col.gameObject.name);
+		if (gameObject.name == "Food") {
+			Debug.Log ("Found foods");
+			col.gameObject.SetActive (false);
+			Destroy (col.gameObject.GetComponent<Item>());
+			Destroy (col.gameObject);
+		}
+	}*/
 
 	void OnApplicationQuit()
 	{

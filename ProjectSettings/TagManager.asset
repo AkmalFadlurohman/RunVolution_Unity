@@ -5,6 +5,7 @@ TagManager:
   serializedVersion: 2
   tags:
   - Prompt Window
+  - Food
   layers:
   - Default
   - TransparentFX
