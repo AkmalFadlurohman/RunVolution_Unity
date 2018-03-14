@@ -56,23 +56,12 @@ public class PetController : MonoBehaviour {
             jumpSound.Play();
         }
     }
-	/*void OnCollisionEnter(Collision col) {
+
+	void OnTriggerEnter(Collider col) {
 		Debug.Log (col.gameObject.name);
-		if (gameObject.name == "Food") {
-			Debug.Log ("Found foods");
-			Destroy (col.rigidbody);
-			Destroy (col.gameObject);
-		}
-	}*/
-	/*void OnTriggerEnter(Collider col) {
-		Debug.Log (col.gameObject.name);
-		if (gameObject.name == "Food") {
-			Debug.Log ("Found foods");
-			col.gameObject.SetActive (false);
-			Destroy (col.gameObject.GetComponent<Item>());
-			Destroy (col.gameObject);
-		}
-	}*/
+		Debug.Log ("Found foods");
+		Debug.Log ("Updating xp & level");
+	}
 
 	void OnApplicationQuit()
 	{

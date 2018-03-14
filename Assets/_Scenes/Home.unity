@@ -242,11 +242,6 @@ GameObject:
   m_PrefabParentObject: {fileID: 1000011395917184, guid: 630adda25e718324a80512d3e4d69e13,
     type: 2}
   m_PrefabInternal: {fileID: 1721718943}
---- !u!4 &16737869 stripped
-Transform:
-  m_PrefabParentObject: {fileID: 4000012073451790, guid: 630adda25e718324a80512d3e4d69e13,
-    type: 2}
-  m_PrefabInternal: {fileID: 1721718943}
 --- !u!1 &27226648
 GameObject:
   m_ObjectHideFlags: 0
@@ -3899,7 +3894,7 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 748428645}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f37da34609690481c929fc7370a5a3e0, type: 3}
   m_Name: 
@@ -8549,10 +8544,9 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children:
-  - {fileID: 16737869}
+  m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 26
+  m_RootOrder: 27
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1685242439
 MonoBehaviour:
@@ -8733,7 +8727,7 @@ Prefab:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    m_TransformParent: {fileID: 1685242438}
+    m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 4000012073451790, guid: 630adda25e718324a80512d3e4d69e13, type: 2}
       propertyPath: m_LocalPosition.x
@@ -8741,7 +8735,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4000012073451790, guid: 630adda25e718324a80512d3e4d69e13, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 0.3
+      value: 0.29999924
       objectReference: {fileID: 0}
     - target: {fileID: 4000012073451790, guid: 630adda25e718324a80512d3e4d69e13, type: 2}
       propertyPath: m_LocalPosition.z
@@ -8765,7 +8759,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4000012073451790, guid: 630adda25e718324a80512d3e4d69e13, type: 2}
       propertyPath: m_RootOrder
-      value: 0
+      value: 26
       objectReference: {fileID: 0}
     - target: {fileID: 1000011395917184, guid: 630adda25e718324a80512d3e4d69e13, type: 2}
       propertyPath: m_Name
@@ -8783,12 +8777,22 @@ Prefab:
     - target: {fileID: 65768219015379374, guid: 630adda25e718324a80512d3e4d69e13,
         type: 2}
       propertyPath: m_Size.x
-      value: 0.05
+      value: 0.07
       objectReference: {fileID: 0}
     - target: {fileID: 65768219015379374, guid: 630adda25e718324a80512d3e4d69e13,
         type: 2}
       propertyPath: m_Size.z
-      value: 0.05
+      value: 0.06
+      objectReference: {fileID: 0}
+    - target: {fileID: 65768219015379374, guid: 630adda25e718324a80512d3e4d69e13,
+        type: 2}
+      propertyPath: m_Size.y
+      value: 0.08
+      objectReference: {fileID: 0}
+    - target: {fileID: 64530614329774142, guid: 630adda25e718324a80512d3e4d69e13,
+        type: 2}
+      propertyPath: m_IsTrigger
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 630adda25e718324a80512d3e4d69e13, type: 2}
@@ -9447,6 +9451,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eb80174839ee242f0a3ba2c7fe2d269e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  petNameLevel: {fileID: 369944669}
+  hungerSlider: {fileID: 1264745672}
+  xpSlider: {fileID: 1839475508}
   menuObject: {fileID: 1951906970}
   noticeWindow: {fileID: 1353510499}
 --- !u!1001 &1840928726

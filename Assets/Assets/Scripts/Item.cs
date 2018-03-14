@@ -13,8 +13,7 @@ public class Item : MonoBehaviour {
 		transform.Rotate (new Vector3 (0, Time.deltaTime * 50, 0));
 	}
 
-	void OnCollisionEnter(Collision collision) {
-		Debug.Log (collision.gameObject.name);
+	void OnTriggerEnter(Collider col) {
 		Destroy(gameObject);
 	}
 }
