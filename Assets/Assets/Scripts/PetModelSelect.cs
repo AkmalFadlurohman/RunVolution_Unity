@@ -70,6 +70,7 @@ public class PetModelSelect : MonoBehaviour {
 		currentSkin = 0;
 		modelObject = Instantiate(petPrefabs[currentType].skins[currentSkin], self.position, self.rotation);
 		modelObject.transform.parent = self;
+		GetComponent<AudioSource>().Play ();
 	}
 
 	public void changePrevModel() {
@@ -82,6 +83,7 @@ public class PetModelSelect : MonoBehaviour {
 		currentSkin = 0;
 		modelObject = Instantiate(petPrefabs[currentType].skins[currentSkin], self.position, self.rotation);
 		modelObject.transform.parent = self;
+		GetComponent<AudioSource>().Play ();
 	}
 
 	public void changeSkin(int index) {
