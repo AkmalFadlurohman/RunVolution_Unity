@@ -11,32 +11,51 @@ public class Evolution : MonoBehaviour {
 	public float cameraAcc = 0.001f;
 	public float maxSpeed = 100.0f;
 	private bool accelerating = true;
+	private bool done = false;
 
 	void Start() {
 		
 	}
 
 	void Update() {
-		if (accelerating) {
-			rotation += acc;
-			monster.transform.Rotate(0, rotation, 0);	
+		if (!done) {
+			if (accelerating) {
+				rotation += acc;
+				monster.transform.Rotate(0, rotation, 0);	
 
-			cameraSpeed += cameraAcc;
-			camera.transform.Translate(0, 0, cameraSpeed);
+				cameraSpeed += cameraAcc;
+				camera.transform.Translate(0, 0, cameraSpeed);
 
-			if (rotation >= maxSpeed) {
-				accelerating = false;
+				if (rotation >= maxSpeed) {
+					accelerating = false;
+					evolveModel();
+				}
+			} else {
+				rotation -= acc;
+				monster.transform.Rotate(0, rotation, 0);
+
+				cameraSpeed -= cameraAcc;
+				camera.transform.Translate(0, 0, -cameraSpeed);
+
+				if (rotation <= 0) {
+					done = true;
+					monster.transform.LookAt(camera.transform);
+				}
 			}
-		} else {
-			rotation -= acc;
-			monster.transform.Rotate(0, rotation, 0);
+		}
+	}
 
-			cameraSpeed -= cameraAcc;
-			camera.transform.Translate(0, 0, -cameraSpeed);
+	void evolveModel() {
+		PetModelSelect petSelect = monster.GetComponent(typeof(PetModelSelect)) as PetModelSelect;
+		if (petSelect != null) {
+			petSelect.changeNextModel();
+		}
+	}
 
-			if (rotation <= 0) {
-				accelerating = true;
-			}
+	void evolveSkin() {
+		PetModelSelect petSelect = monster.GetComponent(typeof(PetModelSelect)) as PetModelSelect;
+		if (petSelect != null) {
+			petSelect.changeNextSkin();
 		}
 	}
 }
