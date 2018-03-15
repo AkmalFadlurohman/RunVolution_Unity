@@ -70,6 +70,7 @@ public class PetModelSelect : MonoBehaviour {
 		currentSkin = 0;
 		modelObject = Instantiate(petPrefabs[currentType].skins[currentSkin], self.position, self.rotation);
 		modelObject.transform.parent = self;
+		GetComponent<AudioSource>().Play ();
 	}
 
 	public void changePrevModel() {
@@ -82,6 +83,7 @@ public class PetModelSelect : MonoBehaviour {
 		currentSkin = 0;
 		modelObject = Instantiate(petPrefabs[currentType].skins[currentSkin], self.position, self.rotation);
 		modelObject.transform.parent = self;
+		GetComponent<AudioSource>().Play ();
 	}
 
 	public void changeSkin(int index) {
@@ -124,7 +126,6 @@ public class PetModelSelect : MonoBehaviour {
 	}
 
 	public  IEnumerator updatePetAppearance(int petID,int type,int skin) {
-		string param = "?petid=" + petID + "&type="+type+"&skin="+skin;
 		WWWForm data = new WWWForm();
 		data.AddField("petid", petID);
 		data.AddField ("type", type);
