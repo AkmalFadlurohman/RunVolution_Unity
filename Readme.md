@@ -18,7 +18,7 @@
 
 ### Networking
 - ~~Update pet status~~
-- Upload pet status
+- ~~Upload pet status~~
 
 ## B. Spek tugas
 - Hukum fisika
@@ -31,5 +31,5 @@
 - ~~Canvas dan panel (untuk menu)~~
 - ~~PlayerPrefs~~
 - ~~Basis Data (misal SQLite)~~
-- Networking (coret setelah bisa upload data)
+- ~~Networking (coret setelah bisa upload data)~~
 - Deployed
