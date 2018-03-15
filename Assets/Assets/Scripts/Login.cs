@@ -13,6 +13,7 @@ public class Login : MonoBehaviour {
 	public InputField emailField;
 	public InputField passwordField;
 	public GameObject menuObject;
+	public GameObject promptWindow;
 
 
 	public void login() {
@@ -22,9 +23,9 @@ public class Login : MonoBehaviour {
 		Regex regex = new Regex(@"^([\w\.\-]+)@([\w\-]+)((\.(\w){2,3})+)$");
 		Match match = regex.Match(email);
 		if (email.Length == 0 || password.Length == 0) {
-			EditorUtility.DisplayDialog ("Login Error", "Email or Password can not be empty", "OK");
+			showPromptWindow ();
 		} else if (!match.Success) {
-			EditorUtility.DisplayDialog ("Login Error", "Please enter a valid email address", "OK");
+			showPromptWindow ();
 		} else {
 			Debug.Log ("User with email " + email + " has logged");
 			StartCoroutine(attemptLogin(email,password));
@@ -50,7 +51,8 @@ public class Login : MonoBehaviour {
 			if (msg.Equals ("OK")) {
 				StartCoroutine (getUserData (email));
 			} else {
-				EditorUtility.DisplayDialog ("Login Error", "Invalid email or password", "OK");
+				//EditorUtility.DisplayDialog ("Login Error", "Invalid email or password", "OK");
+				showPromptWindow();
 			}
 			
 		}
@@ -122,5 +124,16 @@ public class Login : MonoBehaviour {
 				Debug.Log ("Data not found");
 			}
 		}
+	}
+
+	public void showPromptWindow() {
+		promptWindow.SetActive(true);
+	}
+
+	public void hidePromptWindow() {
+		promptWindow.SetActive(false);
+	}
+	public void quitGame() {
+		Application.Quit();
 	}
 }

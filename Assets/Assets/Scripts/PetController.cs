@@ -47,7 +47,7 @@ public class PetController : MonoBehaviour {
 		DateTime currentDate = System.DateTime.Now;
 		TimeSpan iddleTime = currentDate - lastLoginDate;
 		Debug.Log ("Interval from las login : " + iddleTime.TotalSeconds);
-		float hungerLevel = hungerSlider.maxValue - (((float) iddleTime.TotalSeconds / (3600 * 6)) * 100);
+		float hungerLevel = hungerSlider.maxValue - (((float) iddleTime.TotalSeconds / (3600 * 6)) * hungerSlider.maxValue);
 		hungerSlider.value =  hungerLevel;
 		string petName = PlayerPrefs.GetString ("petName");
 		int petLevel = PlayerPrefs.GetInt ("petLevel");
