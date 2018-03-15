@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -42,6 +43,12 @@ public class PetController : MonoBehaviour {
 	// }
 	// Use this for initialization
 	void Start () {
+		DateTime lastLoginDate = DateTime.Parse(PlayerPrefs.GetString ("lastLogin"));
+		DateTime currentDate = System.DateTime.Now;
+		TimeSpan iddleTime = currentDate - lastLoginDate;
+		Debug.Log ("Interval from las login : " + iddleTime.TotalSeconds);
+		float hungerLevel = hungerSlider.maxValue - (((float) iddleTime.TotalSeconds / (3600 * 6)) * 100);
+		hungerSlider.value =  hungerLevel;
 		string petName = PlayerPrefs.GetString ("petName");
 		int petLevel = PlayerPrefs.GetInt ("petLevel");
 		int petXP = PlayerPrefs.GetInt ("petXP");
@@ -74,15 +81,19 @@ public class PetController : MonoBehaviour {
 	void OnTriggerStay(Collider col) {
 		Debug.Log (col.gameObject.name);
 		Debug.Log ("Found foods");
+		UpdateHungerLevel ();
 		UpdatePetXp ();
 	}
 
 	void OnApplicationQuit()
 	{
+		PlayerPrefs.SetString ("lastLogin", System.DateTime.Now.ToString ());
 		Debug.Log ("Game has quit");
 		//PlayerPrefs.DeleteAll ();
 	}
-
+	void UpdateHungerLevel() {
+		hungerSlider.value += 10;
+	}
 	void UpdatePetXp() {
 		Debug.Log ("Updating pet xp");
 		int xpValue = (int) xpSlider.value;
