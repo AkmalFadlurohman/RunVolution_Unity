@@ -1,8 +1,14 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using UnityEngine.Networking;
 
 public class PetController : MonoBehaviour {
+	public Text petNameLevel;
+	public Slider hungerSlider;
+	public Slider xpSlider;
+
 	public GameObject itemContainer;
 	public float rotateSpeed = 150.0f;
 	public float verticalSpeed = 3.0f;
@@ -12,6 +18,8 @@ public class PetController : MonoBehaviour {
 	private AudioSource jumpSound;
 	private bool jumpSound_toggle;
 	private bool jumpSound_play;
+
+
 
 	bool isGrounded() {
 		if (rb.velocity.y == 0) {
@@ -34,6 +42,11 @@ public class PetController : MonoBehaviour {
 	// }
 	// Use this for initialization
 	void Start () {
+		string petName = PlayerPrefs.GetString ("petName");
+		int petLevel = PlayerPrefs.GetInt ("petLevel");
+		int petXP = PlayerPrefs.GetInt ("petXP");
+		petNameLevel.text = petName + " Lv." + petLevel;
+		xpSlider.value = petXP;
 		rb = GetComponent<Rigidbody>();
 		jumpSound = GetComponent<AudioSource>();
 		jumpSound.Stop();
@@ -48,6 +61,7 @@ public class PetController : MonoBehaviour {
 
         transform.Rotate(0, x, 0);
         transform.Translate(0, 0, z);
+
 	}
 
 	void FixedUpdate() {
@@ -57,15 +71,92 @@ public class PetController : MonoBehaviour {
         }
     }
 
-	void OnTriggerEnter(Collider col) {
+	void OnTriggerStay(Collider col) {
 		Debug.Log (col.gameObject.name);
 		Debug.Log ("Found foods");
-		Debug.Log ("Updating xp & level");
+		UpdatePetXp ();
 	}
 
 	void OnApplicationQuit()
 	{
 		Debug.Log ("Game has quit");
-		PlayerPrefs.DeleteAll ();
+		//PlayerPrefs.DeleteAll ();
+	}
+
+	void UpdatePetXp() {
+		Debug.Log ("Updating pet xp");
+		int xpValue = (int) xpSlider.value;
+		xpValue += 40;
+		if (xpValue >= 100) {
+			xpValue %= 100;
+			UpdatePetLevel ();
+		}
+		int petID = PlayerPrefs.GetInt ("petId");
+		StartCoroutine(UploadPetXP(petID,xpValue));
+		xpSlider.value = xpValue;
+	}
+
+	void UpdatePetLevel() {
+		Debug.Log ("Updating pet level");
+		string petName = PlayerPrefs.GetString ("petName");
+		int petLevel = PlayerPrefs.GetInt ("petLevel");
+		petLevel++;
+		if ((petLevel % 5) == 0) {
+			evolvePet ();
+		}
+		int petID = PlayerPrefs.GetInt ("petId");
+		StartCoroutine (UploadPetLevel (petID, petLevel));
+		petNameLevel.text = petName + " Lv." + petLevel;
+		PlayerPrefs.SetInt ("petLevel", petLevel);
+	}
+
+	void evolvePet() {
+		Debug.Log ("Pet evolution event handler");
+	}
+
+	public  IEnumerator UploadPetXP(int petID,int xp) {
+		WWWForm data = new WWWForm();
+		data.AddField("petid", petID);
+		data.AddField ("xp", xp);
+		UnityWebRequest www = UnityWebRequest.Post("https://runvolution.herokuapp.com/updatepetxp",data);
+		yield return www.SendWebRequest();
+
+		if (www.isNetworkError || www.isHttpError) {
+			Debug.Log (www.error);
+		}
+		else {
+			string msg = www.downloadHandler.text;
+			if (msg != null) {
+				Debug.Log (msg);
+				if (msg.Equals ("OK")) {
+					Debug.Log ("Updated pet experiences on server");
+				}
+			} else {
+				Debug.Log ("Data not found");
+			}
+		}
+	}
+
+	public  IEnumerator UploadPetLevel(int petID,int level) {
+		WWWForm data = new WWWForm();
+		data.AddField("petid", petID);
+		data.AddField ("level", level);
+		UnityWebRequest www = UnityWebRequest.Post("https://runvolution.herokuapp.com/updatepetlevel",data);
+		yield return www.SendWebRequest();
+
+		if (www.isNetworkError || www.isHttpError) {
+			Debug.Log (www.error);
+		}
+		else {
+			string msg = www.downloadHandler.text;
+			if (msg != null) {
+				Debug.Log (msg);
+				if (msg.Equals ("OK")) {
+					Debug.Log ("Updated pet level on server");
+				}
+			} else {
+				Debug.Log ("Data not found");
+			}
+		}
 	}
 }

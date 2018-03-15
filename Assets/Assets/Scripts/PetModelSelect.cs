@@ -124,7 +124,6 @@ public class PetModelSelect : MonoBehaviour {
 	}
 
 	public  IEnumerator updatePetAppearance(int petID,int type,int skin) {
-		string param = "?petid=" + petID + "&type="+type+"&skin="+skin;
 		WWWForm data = new WWWForm();
 		data.AddField("petid", petID);
 		data.AddField ("type", type);

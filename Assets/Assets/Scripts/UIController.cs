@@ -2,24 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using UnityEngine.UI;
 
 public class UIController : MonoBehaviour {
-
-	public Text petNameLevel;
-	public Slider hungerSlider;
-	public Slider xpSlider;
-
 	public GameObject menuObject;
 	public GameObject noticeWindow;
-
-	void OnGUI() {
-		string petName = PlayerPrefs.GetString ("petName");
-		int petLevel = PlayerPrefs.GetInt ("petLevel");
-		int petXP = PlayerPrefs.GetInt ("petXP");
-		petNameLevel.text = petName + " Lv." + petLevel;
-		xpSlider.value = petXP;
-	}
 
 	// Use this for initialization
 	void Start () {
