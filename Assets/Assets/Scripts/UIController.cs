@@ -5,17 +5,10 @@ using UnityEngine.SceneManagement;
 
 public class UIController : MonoBehaviour {
 	public GameObject menuObject;
-	public GameObject noticeWindow;
 
 	// Use this for initialization
 	void Start () {
 		Time.timeScale = 1;
-		float previousRecord = PlayerPrefs.GetFloat ("previousRecord");
-		float currentRecord = PlayerPrefs.GetFloat ("currentRecord");
-		float delta = currentRecord - previousRecord;
-		if (delta > 100) {
-			showNoticeWindow ();
-		}
 	}
 
 	// Update is called once per frame
@@ -38,13 +31,8 @@ public class UIController : MonoBehaviour {
 		}
 	}
 	public void logOut() {
+		PlayerPrefs.DeleteAll ();
 		SceneManager.LoadScene ("_Scenes/MainMenu");
-	}
-	public void showNoticeWindow() {
-		noticeWindow.SetActive(true);
-	}
-	public void hideNoticeWindow() {
-		noticeWindow.SetActive(false);
 	}
 	public void QuitGame() {
 		Application.Quit();

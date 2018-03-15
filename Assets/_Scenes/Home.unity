@@ -6522,7 +6522,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1840134000}
+      - m_Target: {fileID: 1685242439}
         m_MethodName: hideNoticeWindow
         m_Mode: 1
         m_Arguments:
@@ -8560,6 +8560,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   modelObject: {fileID: 16737863}
+  noticeWindow: {fileID: 1353510499}
 --- !u!1 &1703168426
 GameObject:
   m_ObjectHideFlags: 0
@@ -9452,7 +9453,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   menuObject: {fileID: 1951906970}
-  noticeWindow: {fileID: 1353510499}
 --- !u!1001 &1840928726
 Prefab:
   m_ObjectHideFlags: 0

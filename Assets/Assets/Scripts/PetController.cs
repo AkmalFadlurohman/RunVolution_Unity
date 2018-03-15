@@ -92,7 +92,7 @@ public class PetController : MonoBehaviour {
 		//PlayerPrefs.DeleteAll ();
 	}
 	void UpdateHungerLevel() {
-		hungerSlider.value += 10;
+		hungerSlider.value += 20;
 	}
 	void UpdatePetXp() {
 		Debug.Log ("Updating pet xp");
@@ -170,4 +170,6 @@ public class PetController : MonoBehaviour {
 			}
 		}
 	}
+
+
 }
