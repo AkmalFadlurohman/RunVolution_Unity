@@ -48,7 +48,7 @@ public class UIController : MonoBehaviour {
 		logoutButton.transform.Translate (0,-30,0);
 		GameObject volumeSlider = menuObject.transform.Find ("Volume Slider").gameObject;
 		volumeSlider.SetActive (true);
-		if (PlayerPrefs.GetFloat ("volume") != null) {
+		if (PlayerPrefs.HasKey("volume")) {
 			float volumeValue = PlayerPrefs.GetFloat ("volume");
 			volumeSlider.GetComponent<Slider> ().value = volumeValue;
 		}
@@ -72,9 +72,5 @@ public class UIController : MonoBehaviour {
 		PlayerPrefs.SetString ("lastLogin", System.DateTime.Now.ToString ("yyyyMMddHHmmss"));
 		PlayerPrefs.SetFloat ("volume", volumeValue);
 		SceneManager.LoadScene ("_Scenes/MainMenu");
-	}
-
-	public void QuitGame() {
-		Application.Quit();
 	}
 }

@@ -32,14 +32,19 @@ public class PetController : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		if (PlayerPrefs.GetString ("lastLogin") != null) {
-			Debug.Log (PlayerPrefs.GetString ("lastLogin"));
-			DateTime lastLoginDate = DateTime.ParseExact(PlayerPrefs.GetString ("lastLogin"),"yyyyMMddHHmmss",CultureInfo.InvariantCulture);//DateTime.Parse(PlayerPrefs.GetString ("lastLogin"));
-			DateTime currentDate = System.DateTime.Now;
-			TimeSpan iddleTime = currentDate - lastLoginDate;
-			Debug.Log ("Interval from las login : " + iddleTime.TotalSeconds);
-			float hungerLevel = hungerSlider.maxValue - (((float)iddleTime.TotalSeconds / (3600 * 6)) * hungerSlider.maxValue);
-			hungerSlider.value = hungerLevel;
+		if (PlayerPrefs.HasKey("lastlogin") && PlayerPrefs.GetString ("lastLogin") != null) {
+			try {
+				Debug.Log (PlayerPrefs.GetString ("lastLogin"));
+				DateTime lastLoginDate = DateTime.ParseExact(PlayerPrefs.GetString ("lastLogin"),"yyyyMMddHHmmss",CultureInfo.InvariantCulture);//DateTime.Parse(PlayerPrefs.GetString ("lastLogin"));
+				DateTime currentDate = System.DateTime.Now;
+				TimeSpan iddleTime = currentDate - lastLoginDate;
+				Debug.Log ("Interval from las login : " + iddleTime.TotalSeconds);
+				float hungerLevel = hungerSlider.maxValue - (((float)iddleTime.TotalSeconds / (3600 * 6)) * hungerSlider.maxValue);
+				hungerSlider.value = hungerLevel;
+			} catch (Exception e) {
+				float hungerLevel = 0;
+				hungerSlider.value = hungerLevel;
+			}
 		} else {
 			hungerSlider.value = 0;
 		}
@@ -78,18 +83,14 @@ public class PetController : MonoBehaviour {
 		UpdateHungerLevel ();
 		UpdatePetXp ();
 	}
-
-	void OnApplicationQuit()
-	{
-		Debug.Log ("Game has quit");
-	}
 	void UpdateHungerLevel() {
 		hungerSlider.value += 20;
 	}
 	void UpdatePetXp() {
 		Debug.Log ("Updating pet xp");
 		int xpValue = (int) xpSlider.value;
-		xpValue += 40;
+		/* Change this value for demo purpose*/
+		xpValue += 100;
 		if (xpValue >= 100) {
 			xpValue %= 100;
 			UpdatePetLevel ();
@@ -162,6 +163,9 @@ public class PetController : MonoBehaviour {
 			}
 		}
 	}
-
+	void OnApplicationQuit()
+	{
+		Debug.Log ("Game has quit");
+	}
 
 }
