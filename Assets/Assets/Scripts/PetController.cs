@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Networking;
+using UnityEngine.SceneManagement;
 
 public class PetController : MonoBehaviour {
 	public Text petNameLevel;
@@ -29,17 +30,6 @@ public class PetController : MonoBehaviour {
 		return false;
 	}
 
-	// void playJumpSound() {
-	// 	if (jumpSound_play == true && jumpSound_toggle == true) {
-	// 		jumpSound.Play();
-	// 		jumpSound_toggle = false;
-	// 	}
-
-	// 	if (jumpSound_play == false && jumpSound_toggle == true) {
-	// 		jumpSound.Stop();
-	// 		jumpSound_toggle = false;
-	// 	}
-	// }
 	// Use this for initialization
 	void Start () {
 		if (PlayerPrefs.GetString ("lastLogin") != null) {
@@ -124,7 +114,7 @@ public class PetController : MonoBehaviour {
 	}
 
 	void evolvePet() {
-		Debug.Log ("Pet evolution event handler");
+		SceneManager.LoadScene ("_Scenes/Evolution");
 	}
 
 	public  IEnumerator UploadPetXP(int petID,int xp) {
