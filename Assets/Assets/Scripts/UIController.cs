@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 
 public class UIController : MonoBehaviour {
 	public GameObject menuObject;
+	public GameObject homeCamera;
 	public bool clickedAudio;
 
 	// Use this for initialization
@@ -44,51 +45,33 @@ public class UIController : MonoBehaviour {
 	}
 	public void showAudioSlider() {
 		GameObject logoutButton = menuObject.transform.Find ("LogOut").gameObject;
-		Vector3 relativeLocation = new Vector3(0, -30, 0);
-		Vector3 targetLocation = logoutButton.transform.position + relativeLocation;
-		Rigidbody2D rb = logoutButton.GetComponent<Rigidbody2D>();
-		rb.position = targetLocation;
+		logoutButton.transform.Translate (0,-30,0);
 		GameObject volumeSlider = menuObject.transform.Find ("Volume Slider").gameObject;
 		volumeSlider.SetActive (true);
+		if (PlayerPrefs.GetFloat ("volume") != null) {
+			float volumeValue = PlayerPrefs.GetFloat ("volume");
+			volumeSlider.GetComponent<Slider> ().value = volumeValue;
+		}
 	}
 
 	public void hideAudioSlider() {
 		GameObject volumeSlider = menuObject.transform.Find ("Volume Slider").gameObject;
 		Debug.Log("Volume value : " + volumeSlider.GetComponent<Slider>().value);
+		float volumeValue = volumeSlider.GetComponent<Slider> ().value;
+		AudioSource bgm = homeCamera.GetComponent<AudioSource> ();
+		bgm.volume = volumeValue / 100;
+		PlayerPrefs.SetFloat ("volume", volumeValue);
 		volumeSlider.SetActive (false);
 		GameObject logoutButton = menuObject.transform.Find ("LogOut").gameObject;
-		Vector3 relativeLocation = new Vector3(0, 30, 0);
-		Vector3 targetLocation = logoutButton.transform.position + relativeLocation;
-		Rigidbody2D rb = logoutButton.GetComponent<Rigidbody2D>();
-		rb.position = targetLocation;
+		logoutButton.transform.Translate (0,30,0);
 	}
 			
 	public void logOut() {
+		float volumeValue = PlayerPrefs.GetFloat ("volume");
 		PlayerPrefs.DeleteAll ();
+		PlayerPrefs.SetString ("lastLogin", System.DateTime.Now.ToString ("yyyyMMddHHmmss"));
+		PlayerPrefs.SetFloat ("volume", volumeValue);
 		SceneManager.LoadScene ("_Scenes/MainMenu");
-	}
-
-	IEnumerator SmoothMove(GameObject targetObject,Vector3 targetPosition, float delta) {
-		float closeEnough = 0.2f;
-		float distance = (targetObject.transform.position - targetPosition).magnitude;
-
-		WaitForEndOfFrame wait = new WaitForEndOfFrame();
-
-		while(distance >= closeEnough)
-		{
-			Debug.Log("Executing Movement");
-
-			transform.position = Vector3.Slerp(targetObject.transform.position, targetPosition, delta);
-			yield return wait;
-
-			// Check if we should repeat
-			distance = (targetObject.transform.position - targetPosition).magnitude;
-		}
-
-		// Complete the motion to prevent negligible sliding
-		targetObject.transform.position = targetPosition;
-
-		Debug.Log ("Movement Complete");
 	}
 
 	public void QuitGame() {

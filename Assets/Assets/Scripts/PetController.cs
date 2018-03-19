@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections;
+using System.Globalization;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -19,8 +20,6 @@ public class PetController : MonoBehaviour {
 	private AudioSource jumpSound;
 	private bool jumpSound_toggle;
 	private bool jumpSound_play;
-
-
 
 	bool isGrounded() {
 		if (rb.velocity.y == 0) {
@@ -43,12 +42,17 @@ public class PetController : MonoBehaviour {
 	// }
 	// Use this for initialization
 	void Start () {
-		DateTime lastLoginDate = DateTime.Parse(PlayerPrefs.GetString ("lastLogin"));
-		DateTime currentDate = System.DateTime.Now;
-		TimeSpan iddleTime = currentDate - lastLoginDate;
-		Debug.Log ("Interval from las login : " + iddleTime.TotalSeconds);
-		float hungerLevel = hungerSlider.maxValue - (((float) iddleTime.TotalSeconds / (3600 * 6)) * hungerSlider.maxValue);
-		hungerSlider.value =  hungerLevel;
+		if (PlayerPrefs.GetString ("lastLogin") != null) {
+			Debug.Log (PlayerPrefs.GetString ("lastLogin"));
+			DateTime lastLoginDate = DateTime.ParseExact(PlayerPrefs.GetString ("lastLogin"),"yyyyMMddHHmmss",CultureInfo.InvariantCulture);//DateTime.Parse(PlayerPrefs.GetString ("lastLogin"));
+			DateTime currentDate = System.DateTime.Now;
+			TimeSpan iddleTime = currentDate - lastLoginDate;
+			Debug.Log ("Interval from las login : " + iddleTime.TotalSeconds);
+			float hungerLevel = hungerSlider.maxValue - (((float)iddleTime.TotalSeconds / (3600 * 6)) * hungerSlider.maxValue);
+			hungerSlider.value = hungerLevel;
+		} else {
+			hungerSlider.value = 0;
+		}
 		string petName = PlayerPrefs.GetString ("petName");
 		int petLevel = PlayerPrefs.GetInt ("petLevel");
 		int petXP = PlayerPrefs.GetInt ("petXP");
@@ -87,9 +91,7 @@ public class PetController : MonoBehaviour {
 
 	void OnApplicationQuit()
 	{
-		PlayerPrefs.SetString ("lastLogin", System.DateTime.Now.ToString ());
 		Debug.Log ("Game has quit");
-		//PlayerPrefs.DeleteAll ();
 	}
 	void UpdateHungerLevel() {
 		hungerSlider.value += 20;

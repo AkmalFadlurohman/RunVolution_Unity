@@ -3171,6 +3171,7 @@ GameObject:
   - component: {fileID: 1476628430}
   - component: {fileID: 1476628429}
   - component: {fileID: 1476628432}
+  - component: {fileID: 1476628433}
   m_Layer: 0
   m_Name: EventSystem
   m_TagString: Untagged
@@ -3238,6 +3239,18 @@ MonoBehaviour:
   passwordField: {fileID: 695179075}
   menuObject: {fileID: 82960982}
   promptWindow: {fileID: 220508651}
+--- !u!114 &1476628433
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1476628428}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 33eaadbd0d70740d5a8dd147810a28ad, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  homeCamera: {fileID: 412433908}
 --- !u!1 &1497289685
 GameObject:
   m_ObjectHideFlags: 0
