@@ -68,6 +68,7 @@ public class ItemController : MonoBehaviour {
 	}
 	public void hideNoticeWindow() {
 		string email = PlayerPrefs.GetString ("email");
+		PlayerPrefs.SetFloat ("previousRecord", -1);
 		StartCoroutine (SetUserRecordAsConsumed (email));
 		noticeWindow.SetActive(false);
 	}
