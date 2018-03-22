@@ -276,6 +276,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4000013723963362}
   - component: {fileID: 95000010999109132}
+  - component: {fileID: 114568764676543640}
   m_Layer: 0
   m_Name: Rabbit_Green
   m_TagString: Untagged
@@ -701,7 +702,7 @@ Transform:
   m_GameObject: {fileID: 1000013796193586}
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 50, y: 50, z: 50}
   m_Children:
   - {fileID: 4000012285115532}
   - {fileID: 4000011458335816}
@@ -717,7 +718,7 @@ Animator:
   m_GameObject: {fileID: 1000013796193586}
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: 05b0336cad2ece64b99ce054ed619f4c, type: 3}
-  m_Controller: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 8ac220df91a4bb44fa5a7b3fe554b297, type: 2}
   m_CullingMode: 1
   m_UpdateMode: 0
   m_ApplyRootMotion: 1
@@ -725,6 +726,17 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
+--- !u!114 &114568764676543640
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000013796193586}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b3593776dc901c049a02465473745f22, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!137 &137000011942192902
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 1
