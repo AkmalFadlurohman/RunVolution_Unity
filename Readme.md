@@ -1,35 +1,22 @@
-# To do list
+# [IF3111] Permainan Unity untuk sistem RunVolution
 
-## A. Daftar fungsionalitas di proposal:
+Dibuat oleh: Al Force (Kelompok II-10)
 
-### Scenes
-- Home Screen (kurang pet feeding)
-- ~~Wardrobe Screen~~
-- ~~Evolution Screen~~
-- ~~Menu Screen (Login)~~
+Anggota:
+- 13515050 Muhammad Umar Fariz Tumbuan
+- 13515074 Akmal Fadlurohman
+- 13515086 Muhammad Iqbal Al Khowarizmi
 
-### Fungsi Unity
-- ~~Pet Apperance Modification => Ubah tekstur / material objek pet~~
-- ~~User menu => pilihan menu (login, settings, exit, dll)~~
-- ~~Pet motion => gerakin objek pet (target gerak pake keyboard. kalo sempet bikin bisa gerak2 sendiri juga)~~
-- ~~Pet Feeding => Bisa drag objek makanan ke screen~~
-- ~~Player preferences => Konfigurasi pengguna (jenis pet, mute sound, background, dsc)~~
-- ~~Pet Evolution => "animasi" evolusi~~
 
-### Networking
-- ~~Update pet status~~
-- ~~Upload pet status~~
+## Deskripsi aplikasi
+Aplikasi Unity yang dibuat adalah aplikasi simulasi peliharaan. Tujuan dari aplikasi ini adalah sebagai visualisasi dari kemajuan pengguna dalam berolahraga. Tiap pengguna akan memiliki seekor peliharaan yang perlu dirawat agar bisa berkembang. Tiap peliharaan memiliki status tingkat kelaparan dan experience. Setelah mendapatkan cukup experience, peliharaan akan naik level. Jika peliharaan mencapai level tertentu, pengguna akan mendapatkan hadiah berupa modifikasi tampilan peliharaan atau model peliharaan baru yang didapat dari evolusi.
 
-## B. Spek tugas
-- ~~Hukum fisika~~
-- ~~Movable Object (Dengan keyboard, mouse, atau joystick)~~
-- ~~Sound effect~~
-- ~~Scenes (minimal 3)~~
-- ~~Pergerakan kamera~~
-- ~~Animasi objek (translasi, rotasi)~~
-- ~~Sumber cahaya (minimal 2, memiliki animasi)~~
-- ~~Canvas dan panel (untuk menu)~~
-- ~~PlayerPrefs~~
-- ~~Basis Data (misal SQLite)~~
-- ~~Networking (coret setelah bisa upload data)~~
-- Deployed
+## Proses instalasi:
+Tidak ada proses instalasi. Program di-*deliver* dalam bentuk *executable* yang dapat langsung dimainkan.
+
+## Link deliverables
+Laporan Milestone 1: [AlForce_K2_LaporanMilestone1](https://docs.google.com/document/d/1ztAnHrpOsDVIttDFxOLZ1mHYQTqGlcVDkOUHYdpu-7A/edit)
+
+Laporan Milestone 2: [AlForce_K2_LaporanMilestone2](https://docs.google.com/document/d/1rOb_GKqAGTc0HxeP6_VpjdWk6TjbFsjuWpiHXfhpt84/edit)
+
+Proposal final: [AlForce_K2_ProposalFinal](https://docs.google.com/document/d/1V7v1A0Yv3wBObHkuB4uoxe1fvuwqrJodEdQg2imfISI/edit)
