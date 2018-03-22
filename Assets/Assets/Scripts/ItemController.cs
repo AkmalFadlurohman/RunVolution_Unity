@@ -10,17 +10,45 @@ public class ItemController : MonoBehaviour {
 	void Start () {
 		float previousRecord = PlayerPrefs.GetFloat ("previousRecord");
 		float currentRecord = PlayerPrefs.GetFloat ("currentRecord");
+		float divisor = 10;
 		float bound = 10;
-		if (previousRecord != -1) {
-			float diffRecord = currentRecord - previousRecord;
-			if (diffRecord > bound) {
-				
-				int count = (int)(diffRecord / bound);
-				Debug.Log ("Generating " + count + " food items");
+		if (!PlayerPrefs.HasKey ("itemCount")) {
+			if (previousRecord != -1) {
+				float diffRecord = currentRecord - previousRecord;
+				if (diffRecord > divisor) {
 
-				modelObject.name = "Food";
+					int itemCount = (int)(diffRecord / divisor);
+					if (itemCount > bound) {
+						itemCount = 10;
+					}
+					PlayerPrefs.SetInt ("itemCount", itemCount);
+					Debug.Log ("Generating " + itemCount + " food items");
+
+					Vector3 position = new Vector3 (-6, 1, 0);
+					for (int i = 0; i < itemCount; i++) {
+						GameObject itemObject = Instantiate (modelObject, position, modelObject.transform.rotation);
+						itemObject.SetActive (true);
+						position.x += 2;
+						if (position.x == 0 && position.z == 0) {
+							position.x += 2;
+						}
+						if (position.x == 4) {
+							position.x = -6;
+							position.z += 2;
+						}
+					}
+					showNoticeWindow ();
+				} else {
+					Debug.Log ("User has not run far enough");
+				}
+			} else {
+				Debug.Log ("Record has been consumed previously");
+			}
+		} else {
+			if (PlayerPrefs.GetInt ("itemCount") > 0) {
+				int itemCount = PlayerPrefs.GetInt ("itemCount");
 				Vector3 position = new Vector3 (-6, 1, 0);
-				for (int i = 0; i < count; i++) {
+				for (int i = 0; i < itemCount; i++) {
 					GameObject itemObject = Instantiate (modelObject, position, modelObject.transform.rotation);
 					itemObject.SetActive (true);
 					position.x += 2;
@@ -32,12 +60,7 @@ public class ItemController : MonoBehaviour {
 						position.z += 2;
 					}
 				}
-				showNoticeWindow ();
-			} else {
-				Debug.Log ("User has not run far enough");
 			}
-		} else {
-			Debug.Log ("Record has been consumed previously");
 		}
 	}
 	

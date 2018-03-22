@@ -15,5 +15,6 @@ public class Item : MonoBehaviour {
 
 	void OnTriggerEnter(Collider col) {
 		Destroy(gameObject);
+		PlayerPrefs.SetInt ("itemCount", PlayerPrefs.GetInt("itemCount")-1);
 	}
 }
